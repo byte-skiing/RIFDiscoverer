@@ -227,6 +227,20 @@ def get_testing_strategy(strategy_name, range=None):
 		'settings': settings_with_checkbox
 	}
 
+def update_strategy_settings_ids(strategy_id, settings):
+	new_settings_ids = []
+	settings = db.execute("SELECT setting_id FROM resource_settings WHERE strategy_id = ? GROUP BY setting_id ORDER BY setting_id", (strategy_id,))
+	settings = settings if isinstance(settings, list) else [settings]
+
+	for i, setting in enumerate(settings):
+		db.execute("UPDATE resource_settings SET setting_id = ? WHERE strategy_id = ? AND setting_id = ?", (i, strategy_id, setting[0],))
+		new_settings_ids.append({
+			'previous_id': setting[0],
+			'new_id': i
+		})
+	
+	return new_settings_ids
+
 @eel.expose
 def delete_testing_strategies_resource_settings(strategy, settings):
 	strategy_id = strategy['id']
@@ -235,17 +249,8 @@ def delete_testing_strategies_resource_settings(strategy, settings):
 	for setting_id in settings_ids:
 		db.execute("DELETE FROM resource_settings WHERE strategy_id = ? AND setting_id = ?", (strategy_id, setting_id,))
 
-	updated_settings = []
-	settings = db.execute("SELECT setting_id FROM resource_settings WHERE strategy_id = ? GROUP BY setting_id ORDER BY setting_id", (strategy_id,))
-
-	for i, setting in enumerate(settings):
-		db.execute("UPDATE resource_settings SET setting_id = ? WHERE strategy_id = ? AND setting_id = ?", (i, strategy_id, setting[0],))
-		updated_settings.append({
-			'previous_id': setting[0],
-			'new_id': i
-		})
-
-	return updated_settings
+	new_settings_ids = update_strategy_settings_ids(strategy_id, settings_ids)
+	return new_settings_ids
 
 socket_process = Process(target=socket_server, args=())
 
