@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RIFDiscoverer</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/Sidebar.css" />
+    <link rel="stylesheet" href="css/TestingStrategies.css" />
+    <link rel="stylesheet" href="css/ExecutionParameters.css" />
+    <link rel="stylesheet" href="css/AddCustomSettingModal.css" />
+    <link rel="stylesheet" href="css/RunInstrumentedTestSuits.css" />
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/Sidebar.js"></script>
+    <script type="text/javascript" src="js/TestingStrategies.js"></script>
+    <script type="text/javascript" src="js/ExecutionParameters.js"></script>
+    <script type="text/javascript" src="js/AddCustomSettingModal.js"></script>
+    <script type="text/javascript" src="js/ConfirmModal.js"></script>
+    <script type="text/javascript" src="js/ConfirmDeleteModal.js"></script>
+    <script
+      type="text/javascript"
+      src="js/RunInstrumentedTestSuits.js"
+    ></script>
+    <script type="text/javascript" src="/eel.js"></script>
+  </head>
+  <body onload="initialize()">
+    <div class="Sidebar">
+      <div class="SidebarHeader">
+        <div class="AppLogo">RIFDiscoverer</div>
+      </div>
+
+      <div class="SidebarButtonsContainer">
+        <button
+          id="testing-strategies-button"
+          class="SidebarButton SidebarButtonSelected UnstyledButton"
+        >
+          <img
+            class="SidebarButtonIcon"
+            src="img/testing-strategies-icon.svg"
+            alt="Execution Parameters"
+          />
+          Testing Strategies
+        </button>
+        <button
+          id="execution-parameters-button"
+          class="SidebarButton UnstyledButton"
+        >
+          <img
+            class="SidebarButtonIcon"
+            src="img/execution-settings-icon.svg"
+            alt="Execution Parameters"
+          />
+          Execution Parameters
+        </button>
+        <button
+          id="run-instrumented-test-suits-button"
+          class="SidebarButton UnstyledButton"
+        >
+          <img
+            class="SidebarButtonIcon"
+            src="img/run-instrumental-test-suit-icon.svg"
+            alt="Execution Parameters"
+          />
+          Run Instrumented Test Suite
+        </button>
+      </div>
+
+      <div class="SidebarFooter">
+        <progress id="progress-bar" value="0" max="0"></progress>
+      </div>
+    </div>
+
+    <main>
+      <div
+        id="testing-strategies-screen"
+        class="TestingStrategiesScreen MainPageScreen MainPageSelectedScreen"
+      >
+        <div class="TestingStrategiesScreenWrapper">
+          <div class="TestingStrategySelectorContainer">
+            <div class="TestingStrategySelectorHeader">
+              Select a testing strategy
+            </div>
+
+            <div class="TestingStrategySelectorWrapper">
+              <select
+                id="testing-strategy-selector"
+                class="TestingStrategySelector"
+              ></select>
+
+              <div class="RangeSelectorContainer">
+                <label id="range-display" for="range-selector">T=2</label>
+                <input
+                  type="range"
+                  id="range-selector"
+                  class="RangeSelector"
+                  min="1"
+                  max="3"
+                  value="2"
+                />
+              </div>
+            </div>
+          </div>
+          <table class="TableSettings">
+            <thead class="TableSettingsHeader">
+              <tr class="TableSettingsRow TableSettingsRowHeader">
+                <th class="TableRadio">
+                  <input type="checkbox" id="select-all-settings" />
+                </th>
+                <th class="TableSettingsCellHeader TableId">ID</th>
+              </tr>
+            </thead>
+            <tbody class="TableSettingsBody"></tbody>
+          </table>
+
+          <div class="TableSettingsButtonsContainer">
+            <button
+              id="add-custom-setting-button"
+              class="CustomButton OutlineButton OutlinePrimary"
+              onclick="openAddSettingModal()"
+            >
+              Add Custom Setting
+            </button>
+
+            <button
+              id="add-random-setting-button"
+              class="CustomButton OutlineButton OutlinePrimary"
+            >
+              Add Random Setting
+            </button>
+
+            <button
+              id="delete-selected-settings-button"
+              class="CustomButton OutlineButton OutlineDanger"
+            >
+              Delete Settings
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="execution-parameters-screen"
+        class="ExecutionPametersScreen MainPageScreen"
+      >
+        <div class="ExecutionParametersScreenWrapper">
+          <div class="ExecutionParametersContainer">
+            <div class="ExecutionParameter">
+              <label for="app-project-folder-button">
+                Application Project Folder
+              </label>
+              <div class="TooltipIcon">
+                ?
+
+                <div class="Tooltip">
+                  The folder where the <code>gradlew</code> file is located.
+                </div>
+              </div>
+              <button
+                id="app-project-folder-button"
+                class="UnstyledButton SelectFolder"
+                onclick="selectAppProjectFolder()"
+              >
+                Select Folder
+              </button>
+              <span id="app-project-folder-path"></span>
+            </div>
+            <div class="ExecutionParameter">
+              <label for="test-reports-folder-button">
+                Gradle Test Reports Folder
+              </label>
+              <div class="TooltipIcon">
+                ?
+                <div class="Tooltip">
+                  The folder where the application test reports are saved.
+                  Generally, this is <code>app/build/reports</code> folder.
+                </div>
+              </div>
+              <button
+                id="test-reports-folder-button"
+                class="UnstyledButton SelectFolder"
+                onclick="selectTestReportsFolder()"
+              >
+                Select Folder
+              </button>
+              <span id="test-reports-folder-path"></span>
+            </div>
+
+            <div class="ExecutionParameter">
+              <label for="number-of-executions">Number of executions</label>
+              <div class="TooltipIcon">
+                ?
+                <div class="Tooltip">
+                  The number of times each setting will be executed. This is to
+                  prevent the impact of flaky tests.
+                </div>
+              </div>
+              <input
+                type="number"
+                min="1"
+                value="3"
+                id="number-of-executions"
+                class="NumberInput"
+              />
+            </div>
+
+            <div class="ExecutionParameter">
+              <label for="gradle-task-name">Gradle Task Name</label>
+              <div class="TooltipIcon">
+                ?
+                <div class="Tooltip">
+                  The name of the gradle task that will be executed.
+                  <br />
+                  You can run "<code>./gradlew tasks</code>" on the root of the
+                  project to get the list of tasks.
+                </div>
+              </div>
+              <input type="text" id="gradle-task-name" class="TextInput" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="run-instrumented-test-suits-screen"
+        class="MainPageScreen InstrumentedTestPage"
+      >
+        <div class="InstrumentedTestRunWrapper">
+          <div class="TerminalContainer"></div>
+
+          <div class="InstrumentTestBottomBar">
+            <div class="InstrumentedTestButtonsContainer">
+              <button
+                id="load-emulator-button"
+                class="CustomButton PrimaryButton"
+              >
+                Load Emulator
+              </button>
+              <button id="run-tests-button" class="CustomButton PrimaryButton">
+                Run Tests
+              </button>
+              <button
+                id="view-reports-button"
+                class="CustomButton PrimaryButton"
+              >
+                View Reports
+              </button>
+            </div>
+            <div class="InstrumentedTestButtonsContainer">
+              <button
+                id="abort-tests-button"
+                class="CustomButton DangerButton"
+                style="display: none"
+              >
+                Abort Tests
+              </button>
+              <button
+                id="clear-terminal-button"
+                class="CustomButton OutlineButton OutlineDanger"
+              >
+                Clear Terminal
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="Modal" id="modal-add-setting" style="display: none">
+      <div class="ModalContent">
+        <div class="ModalHeader">
+          <h2>Create Custom Setting</h2>
+          <button class="CloseModalButton" onclick="closeAddSettingModal()">
+            &times;
+          </button>
+        </div>
+        <div class="ModalBody">
+          <div
+            id="modal-custom-settings-container"
+            class="ModalBodyContent"
+          ></div>
+        </div>
+        <div class="ModalFooter">
+          <button
+            id="modal-add-setting-button"
+            class="CustomButton PrimaryButton"
+            onclick="createCustomSettingFromModal()"
+          >
+            Add Setting
+          </button>
+
+          <button
+            onclick="closeAddSettingModal()"
+            class="CustomButton OutlineButton OutlineDanger"
+          >
+            Draft Setting
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="Modal" id="modal-confirm" style="display: none">
+      <div class="ModalContent">
+        <div class="ModalHeader">
+          <h2>Confirm action</h2>
+          <button id="modal-confirm-close" class="CloseModalButton">
+            &times;
+          </button>
+        </div>
+        <div class="ModalBody">
+          <div class="ModalBodyContent" id="modal-confirm-message"></div>
+        </div>
+        <div class="ModalFooter">
+          <button
+            id="modal-confirm-button"
+            class="CustomButton OutlineButton OutlinePrimary"
+          >
+            Confirm
+          </button>
+
+          <button
+            id="modal-confirm-cancel"
+            class="CustomButton OutlineButton OutlineDanger"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

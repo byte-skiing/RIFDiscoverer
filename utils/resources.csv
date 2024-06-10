@@ -1,0 +1,13 @@
+resource_id,resource_display_name
+location,Location
+wifi,Wifi
+mobiledata,Mobile Data
+bluetooth,Bluetooth
+autorotate,Auto Rotate
+batterysaver,Battery Saver
+donotdisturb,Do Not Disturb
+camera,Camera
+accelerometer,Accelerometer
+gyroscope,Gyroscope
+magneticfield,Magnetic Field
+proximity,Proximity

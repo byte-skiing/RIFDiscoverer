@@ -1,0 +1,202 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  min-height: 100vh;
+  height: 100%;
+  min-width: fit-content;
+}
+
+button.UnstyledButton {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+
+button.SelectFolder {
+  color: #a3a3a3;
+  border: none;
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+  border: 1px solid #d4d4d4;
+  border-radius: 5px;
+  height: 40px;
+  text-wrap: nowrap;
+  width: 126.27px;
+  min-width: 126.27px;
+  font-size: 15px;
+}
+
+input.NumberInput {
+  border: none;
+  cursor: pointer;
+  border: 1px solid #d4d4d4;
+  border-radius: 5px;
+  margin: 10px;
+  background-color: transparent;
+  width: 92.27px !important;
+  padding: 0 10px !important;
+  height: 36px;
+  font-size: 15px;
+  font-weight: normal;
+}
+
+input.NumberInput:focus {
+  outline: none;
+}
+
+input.TextInput {
+  border: none;
+  cursor: pointer;
+  border: 1px solid #d4d4d4;
+  border-radius: 5px;
+  margin: 10px;
+  background-color: transparent;
+  width: 250px;
+  padding: 0 10px !important;
+  height: 36px;
+  font-size: 15px;
+  font-weight: normal;
+}
+
+input.TextInput:focus {
+  outline: none;
+}
+
+.MainPageScreen {
+  display: none;
+  height: 100%;
+  width: 100%;
+}
+
+.MainPageSelectedScreen {
+  display: flex;
+}
+
+main {
+  background-color: #f5f5f5;
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+}
+
+.CustomButton {
+  font-size: 14px;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  touch-action: manipulation;
+  cursor: pointer;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  color: #fff;
+  border-radius: 10px;
+  line-height: 1.42857143;
+  height: 40px;
+}
+
+.CustomButton:active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+button.PrimaryButton {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+button.PrimaryButton:hover {
+  background-color: #0056b3;
+  border-color: #004799;
+}
+
+button.DangerButton {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+button.DangerButton:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+button.OutlineButton {
+  color: #007bff;
+  background-color: transparent;
+  background-image: none;
+  border-color: #007bff;
+}
+
+button.OutlineButton:hover {
+  transition: 0.3s;
+}
+
+button.OutlinePrimary {
+  color: #007bff;
+  border-color: #007bff;
+}
+
+button.OutlinePrimary:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+button.OutlineDanger {
+  color: #dc3545;
+  border-color: #dc3545;
+}
+
+button.OutlineDanger:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.TooltipIcon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 50%;
+  width: 17px;
+  height: 17px;
+  min-width: 17px;
+  min-height: 17px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.TooltipIcon .Tooltip {
+  display: none;
+  position: absolute;
+  background-color: #1f263e;
+  color: #fff;
+  padding: 7px;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 300px;
+  left: 28px;
+  top: 4px;
+  z-index: 1;
+  transform: translateY(-50%);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.TooltipIcon:hover .Tooltip {
+  display: block;
+}

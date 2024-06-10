@@ -1,0 +1,79 @@
+.Modal {
+  z-index: 1000;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.ModalContent {
+  width: 430px;
+  background-color: #fff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* between .ModalContent children add border bottom 
+ */
+
+.ModalContent > * {
+  padding: 14px 10px;
+  width: calc(100% - 20px);
+  border-top: 1px solid #e9ecef;
+}
+
+.ModalHeader {
+  border-radius: inherit;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ModalHeader h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #495057;
+  display: flex;
+  align-items: center;
+}
+
+.ModalBody {
+  height: 100%;
+}
+
+.ModalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.CloseModalButton {
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+#modal-custom-settings-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.CustomSettingToggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.CustomSettingToggle label {
+  margin: 0;
+  padding: 0;
+}

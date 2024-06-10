@@ -1,0 +1,69 @@
+.InstrumentedTestPage {
+  justify-content: center;
+  align-items: center;
+}
+
+.InstrumentedTestRunWrapper {
+  height: 100%;
+  margin: 20px;
+
+  width: 100%;
+  max-width: 1000px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.InstrumentTestBottomBar {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.TerminalContainer {
+  padding: 20px;
+  height: 599px;
+  background-color: black;
+  display: flex;
+  flex-direction: column-reverse;
+  overflow-y: auto;
+  color: white;
+  font-size: 16px;
+  width: calc(100% - 40px);
+  font-family: "Courier New", Courier, monospace;
+  gap: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.TerminalContainer::-webkit-scrollbar {
+  border: 1px solid #000;
+  padding: 2px 0;
+  background-color: #404040;
+  border-radius: 0 10px 10px 0;
+}
+
+.TerminalContainer::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #737272;
+  border: 1px solid #000;
+}
+
+.TerminalContainer::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+.InstrumentedTestButtonsContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  width: fit-content;
+  gap: 10px;
+}
+
+#view-reports-button {
+  display: none;
+}
