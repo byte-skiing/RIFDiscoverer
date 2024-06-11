@@ -39,8 +39,14 @@ source .venv/bin/activate
 
 Then, you can execute the python script that will launch the application in your browser
 
+
 ```
 python3 main.py
 ```
 
 When you're finished, type `deactivate` in your terminal to make sure you're out of the virtual environment.
+
+
+### Demonstration Video
+
+A demonstation video showing how to use the tool is available on [Youtube](https://youtu.be/oz39ME5KDas).
