@@ -13,14 +13,14 @@ async function loadResourcesModal() {
     const resourceSettingCheckbox = document.createElement("input");
     resourceSettingCheckbox.classList.add("CustomSettingToggleInput");
     resourceSettingCheckbox.type = "checkbox";
-    resourceSettingCheckbox.id = `checkbox-${resourceTableName}`;
+    resourceSettingCheckbox.id = `checkbox-${resourceId}`;
     resourceSettingCheckbox.name = resourceTableName;
     resourceSetting.appendChild(resourceSettingCheckbox);
 
     const resourceSettingName = document.createElement("label");
     resourceSettingName.classList.add("CustomSettingToggleLabel");
     resourceSettingName.id = `label-${resourceId}`;
-    resourceSettingName.htmlFor = `checkbox-${resourceTableName}`;
+    resourceSettingName.htmlFor = `checkbox-${resourceId}`;
     resourceSettingName.textContent = resource?.display_name;
     resourceSetting.appendChild(resourceSettingName);
 
@@ -49,7 +49,7 @@ function getSelectedResources() {
   );
 
   for (const checkbox of resourceCheckboxes) {
-    const resourceId = checkbox.id;
+    const resourceId = checkbox.id.split("-")[1];
     const resourceTableName = checkbox.name;
     const isEnabled = checkbox.checked;
 
