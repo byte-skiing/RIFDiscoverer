@@ -1,8 +1,16 @@
 # RIFDiscoverer
 
+A tool for finding resource interraction failures
+
+## Demonstration Video
+
+A demonstation video showing how to use the tool is available on [YouTube](https://youtu.be/oz39ME5KDas).
+
 ## Manual install
 
-Make sure you have Python 3.8.10 or above installed in your machine, and that `python3` is your OS path. To run the testing application is necessary to have `python3-tk` and Android Debug Bridge (adb).
+Before trying to install, checkout [our Wiki](https://github.com/byte-skiing/RIFDiscoverer/wiki) so that you have everything that's needed to run.
+
+Make sure you have Python 3.8.10 or above installed in your machine, and that `python3` is in your OS path. To run the testing application is necessary to have `python3-tk` and Android Debug Bridge (adb).
 
 ```
 sudo apt-get install python3-tk
@@ -45,8 +53,3 @@ python3 main.py
 ```
 
 When you're finished, type `deactivate` in your terminal to make sure you're out of the virtual environment.
-
-
-### Demonstration Video
-
-A demonstation video showing how to use the tool is available on [Youtube](https://youtu.be/oz39ME5KDas).
